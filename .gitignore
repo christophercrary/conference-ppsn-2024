@@ -1,0 +1,23 @@
+# Generic.
+**/test
+**/datasets
+**/build
+**/runs
+**.log
+**/.nfs*
+
+# Specific.
+code/operon/data
+code/operon/results
+
+# Python.
+**/__pycache__
+
+# Jupyter.
+**/.ipynb_checkpoints
+
+# MacOS.
+**/.DS_Store
+
+# VSCode.
+**.vscode
