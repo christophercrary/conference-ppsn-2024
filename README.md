@@ -14,6 +14,14 @@ Also, when executing locally, note that only MacOS and Linux operating systems a
 
 This is likely to be the easiest way to run the experiment. Install [nix](https://nixos.org/download/) or [nix-portable](https://github.com/DavHau/nix-portable/releases/)
 
+Once `nix` is installed, unpack the Operon sources and navigate to that folder. Once inside:
+
+```bash
+git init . # required by nix
+git add flake.nix # required by nix
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes # dev shell
+```
+
 Compile Operon with all the backends:
 ```bash
 for backend in {Eigen,Stl,Vdt,Mad_Transcendental_Fast,Mad_Transcendental_Faster,Mad_Transcendental_Fastest}; do
