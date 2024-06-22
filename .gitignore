@@ -7,8 +7,16 @@
 **/.nfs*
 
 # Specific.
-code/operon/data
-code/operon/results
+code/operon/data.zip
+code/operon/results_full.csv.gz
+code/operon/problems
+code/operon/operon_sources.zip
+code/operon/sources
+code/operon/r2_test.pdf
+code/operon/correction.pdf
+code/operon/radar_factory.py
+code/operon/operon_experiment.py
+code/operon/model_correction.ipynb
 
 # Python.
 **/__pycache__
