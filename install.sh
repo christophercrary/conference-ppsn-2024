@@ -209,3 +209,52 @@ cmake -S . -B build \
 cmake --install build
 popd
 rm -rf mdspan
+
+# scn
+git clone https://github.com/eliaskosunen/scnlib.git
+pushd scnlib
+git checkout f3b00eca89ee923e4b03a950dee0d00da48e7001
+cmake -S . -B build \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build
+popd
+rm -rf scnlib
+
+# vdt
+git clone https://github.com/foolnotion/vdt.git
+pushd vdt
+git checkout 2ae89e521cc9c233592bedf1c7db12fe94a71ce2
+cmake -S . -B build \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build
+popd
+rm -rf vdt
+
+# xxhash
+git clone https://github.com/Cyan4973/xxHash.git
+pushd xxHash
+git checkout 805c00b68fa754200ada0c207ffeaa7a4409377c
+cmake -S ./cmake_unofficial -B build \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build
+popd
+rm -rf xxHash
+
+# install the operon backends
+git clone https://github.com/heal-research/operon
+pushd operon
+git switch operon-mad-math
+for backend in {Eigen,Stl,Vdt,Mad_Transcendental_Fast,Mad_Transcendental_Faster,Mad_Transcendental_Fastest}; do
+    cmake -S . -B build_${backend} --preset build-${PLATFORM} \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DMATH_BACKEND=${backend}
+    cmake --build build_${backend} -j
+done
+popd
