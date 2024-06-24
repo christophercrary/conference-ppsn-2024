@@ -7,6 +7,7 @@
 **/.nfs*
 
 # Specific.
+code/operon/operon*
 code/operon/data.zip
 code/operon/results_full.csv.gz
 code/operon/problems
