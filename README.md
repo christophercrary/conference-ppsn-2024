@@ -2,7 +2,7 @@
 
 This repository was created for the conference paper "Enhancing the Computational Efficiency of Genetic Programming through Alternative Floating-Point Primitives," which was accepted to the 2024 Parallel Problem Solving from Nature (PPSN) conference.
 
-Python-based implementations of the proposed math algorithms, along with the relevant experiments and results for measuring median relative error, are provided in `code/approximations`. Separately, a Jupyter notebook analyzing the experiments conducted by Operon is provided in `code/operon`. Files needed for running the Operon experiments and analysis script locally can be installed using the following instructions.
+Python-based implementations of the proposed math algorithms, along with the relevant experiments and results for measuring median relative error, are provided in `code/approximations`. Separately, a Jupyter notebook analyzing the experiments conducted by Operon is provided in `code/operon`. Files needed for running the Operon analysis script and the experiments can be installed using the following instructions.
 
 ## Installation instructions
 
@@ -46,12 +46,16 @@ conda activate conference-ppsn-2024
 bash install.sh
 ```
 
-To finish installation, extract and copy the contents of the `data.zip` file from the software release and paste them within the `code/operon` folder. These contents provide the relevant data/sources needed to run/analyze the relevant Operon experiments.
+To finish installation, extract and copy the contents of the `data.zip` file from the software release and paste them within the `code/operon` folder. These contents provide the relevant data/sources needed to run the relevant Operon experiments and analysis scripts.
 
-### Running an experiment
+### Running the experiments
 
-Make sure to change the shebang at the top of the `operon_experiment.py` file to the actual path to your Python executable. Assuming the Operon build folders are in the same folder with the Python script:
+Make sure that the shebang statement at the top of the `operon_experiment.py` file correctly points to the relevant Python executable. Within the `operon` folder, execute the bash commands in order to run the relevant experiments:
 
 ```bash
  for backend in {Eigen,Vdt,Stl,Mad_Transcendental_Fast,Mad_Transcendental_Faster,Mad_Transcendental_Fastest}; do ./operon_experiment.py --bin ./build_${backend}/cli/operon_nsgp --data experiment/data/ --reps 20 >> my_results.csv; done
 ```
+
+After the above finishes execution, ...
+
+Note that various results reported in the paper will be irreproducible, e.g., runtimes and energy measurements.

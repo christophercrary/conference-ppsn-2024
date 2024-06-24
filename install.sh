@@ -116,9 +116,9 @@ rm -rf cpp-sort
 ## fmt (conda only includes the shared library and we want the static)
 git clone https://github.com/fmtlib/fmt.git
 pushd fmt
+git checkout e69e5f977d458f2650bb346dadf2ad30c5320281
 mkdir build
 pushd build
-git checkout e69e5f977d458f2650bb346dadf2ad30c5320281
 cmake .. \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
@@ -209,3 +209,46 @@ cmake -S . -B build \
 cmake --install build
 popd
 rm -rf mdspan
+
+# scnlib
+git clone https://github.com/eliaskosunen/scnlib.git
+pushd scnlib
+git checkout f3b00eca89ee923e4b03a950dee0d00da48e7001
+mkdir build
+pushd build
+cmake .. \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release
+make install
+popd
+popd
+rm -rf scnlib
+
+# xxhash
+git clone https://github.com/Cyan4973/xxHash.git
+pushd xxHash
+git checkout 805c00b68fa754200ada0c207ffeaa7a4409377c
+mkdir build
+pushd build
+cmake ../cmake_unofficial \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+cmake --build . --target install
+popd
+popd
+rm -rf xxHash
+
+# operon
+git clone https://github.com/heal-research/operon.git
+pushd operon
+git checkout 8842d6ce17e55c4452c511557bf61f701ced736c
+for backend in {Eigen,}; do
+    cmake -S . -B build_${backend} --preset build-${PLATFORM} \
+    -DCMAKE_INSTALL_PREFIX=${CONDA_PREFIX} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DMATH_BACKEND=${backend}
+    cmake --build build_${backend} -j
+done
+popd
+rm -rf operon

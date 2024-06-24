@@ -17,6 +17,7 @@ code/operon/correction.pdf
 code/operon/radar_factory.py
 code/operon/operon_experiment.py
 code/operon/model_correction.ipynb
+code/operon/my_results.csv
 
 # Python.
 **/__pycache__

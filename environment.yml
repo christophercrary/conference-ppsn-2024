@@ -2,7 +2,12 @@ name: conference-ppsn-2024
 channels:
   - conda-forge
 dependencies:
+  - clangxx=18.1.*
+  - cmake=3.29.*
+  - cxxopts=3.2.*
+  - eigen=3.4.*
   - git=2.44.*
+  - pkg-config=0.29.*
   - pip=24.0.*
   - python=3.12.*
   - pip:
